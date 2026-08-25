@@ -4,7 +4,7 @@
 
 // Declare external functions to prevent compiler warnings
 int yylex(void);
-int yyerror(const char *s);
+void yyerror(const char *s);
 %}
 
 %token WORD NUMBER STOP
@@ -22,9 +22,11 @@ thing : WORD | NUMBER ;
 %%
 
 int main(void) {
+    printf("Enter words and numbers followed by . \nPress Ctrl+D to exit:\n");
     yyparse();
+    return 0;
 }
 
-int yyerror(char *s) {
+void yyerror(const char *s) {
     printf("Fail: %s\n", s);
 }
